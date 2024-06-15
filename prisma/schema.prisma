@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+//npx prisma migrate dev --name init
+//Debo tener un archivo de conexion con la base de datos
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  priority    String   @default("low")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Year {
+  id     Int     @id @default(autoincrement())
+  year   Int
+  months Month[]
+}
+
+model Month {
+  id         Int     @id @default(autoincrement())
+  yearId     Int
+  month      String
+  brutIncome Float
+  spends     Spend[]
+  Year       Year    @relation(fields: [yearId], references: [id])
+}
+
+model Spend {
+  id          Int      @id @default(autoincrement())
+  monthId     Int
+  service     String?
+  amount      Float?
+  type        String?
+  description String?
+  createdAt   DateTime @default(now())
+  month       Month    @relation(fields: [monthId], references: [id])
+
+  @@index([monthId]) // Índice para optimizar las búsquedas por monthId
+}

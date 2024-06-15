@@ -1,0 +1,29 @@
+.monthContainer {
+  display: grid;
+  grid-template-columns: 1fr 60% 1fr;
+  gap: 16px; /* Ajusta el espacio entre columnas según sea necesario */
+  width: 65vw;
+  justify-content: center;
+}
+
+.column {
+  padding: 16px; /* Ajusta el padding según sea necesario */
+  border: 1px solid #ccc; /* Añade un borde para distinguir las columnas */
+}
+
+@media screen and (max-width: 1500px) {
+  .monthContainer {
+    gap: 3px;
+    width: 76vw;
+  }
+  .column {
+    padding: 3px; /* Ajusta el padding según sea necesario */
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .monthContainer {
+    grid-template-columns: 1fr;
+    width: 90vw;
+  }
+}
