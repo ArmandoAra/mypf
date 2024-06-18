@@ -1,10 +1,6 @@
-import prisma from "@/lib/prisma";
-import TaskCard from "@/components/cards/task-card";
-import TotalCard from "@/components/cards/total";
-import ResumeCard from "@/components/cards/resume";
+
 import dinamic from "next/dynamic";
-//styles
-import "../app/styles.css";
+
 import HomeTotalCard from "@/components/cards/homeTotal";
 import { calcTotalYear } from "@/components/utils/calculate";
 import BarChart from "@/components/bars/BarChart";
@@ -20,14 +16,14 @@ async function Home() {
 
   return (
 
-    <section className="container mt-32 gap-y-14" >
-      <div className="tile">
-        <h1 className="text-7xl font-bold ">
+    <section className="" >
+      <div className="mt-24">
+        <h1 className="text-7xl font-bold my-10 ml-11">
           My Personal Finance
         </h1>
       </div>
-      <div className="totalMonthsContainer gap-x-5">
-        <div className="totalContainer">
+      <div className="flex flex-col lg:flex-row gap-8 ">
+        <div className="p-8 ">
           <HomeTotalCard
             year={selectedYear}
             totalBruIncome={data?.totalBruIncome || 0}
@@ -37,7 +33,7 @@ async function Home() {
             total={data?.total || 0}
           />
         </div>
-        <div className="monthsContainer p-4">
+        <div className="flex lg:w-2/3 xl:w-5/6 items-center p-6">
           <BarChart incomes={monthsIncomes} expenses={monthsSpends} />
         </div>
       </div>

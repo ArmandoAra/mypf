@@ -11,8 +11,8 @@ import { buttonVariants } from '../ui/button'
 
 const NavBar = () => {
     return (
-        <nav className='flex justify-center items-center h-16 bg-black w-screen'>
-            <div className='flex gap-x-1 md:gap-x-44'>
+        <nav className='flex justify-center items-center h-16 bg-black w-screen fixed z-50'>
+            <div className='flex md:gap-x-44 '>
                 <Link className={buttonVariants({ variant: "secondary" })} href='/'>Home</Link>
                 <SelectMonthPage />
                 <ModeToggle />
