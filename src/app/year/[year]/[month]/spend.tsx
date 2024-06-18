@@ -1,14 +1,10 @@
-
-
-
 "use client"
 import React, { useState, useEffect, useMemo, use } from 'react';
-import Link from 'next/link';
 import SpendButtonDelete from '@/components/buttons/spend-button-delete';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import SpendForm from './spend-form-test';
+import SpendForm from './spend-form';
 
 //styles
 import "./styles.css";
@@ -108,7 +104,7 @@ const SpendCard: React.FC<SpendCardProps> = ({ spends, year, month }) => {
 
 
     return (
-        <section className='w-full xl:w-3/4 2xl:w-10/12' >
+        <section className='w-full xl:w-3/4 2xl:w-10/12 ' >
             <div className='flex flex-row w-full justify-center xl:justify-start mt-8 mb-3 gap-4'>
                 <label htmlFor="sort"><h2 className='text-2xl'>Sort by: </h2></label>
                 <select id="sort" className='w-2/4' value={selectedType} onChange={handleChange}>
@@ -117,7 +113,7 @@ const SpendCard: React.FC<SpendCardProps> = ({ spends, year, month }) => {
                     ))}
                 </select>
             </div>
-            <div className='flex flex-col xl:flex-row ' >
+            <div className='flex flex-col xl:flex-row gap-10' >
 
                 <Table className='w-full flex flex-col sm:table'>
                     <TableHeader className='flex flex-col items-center w-full sm:table-row-group'>

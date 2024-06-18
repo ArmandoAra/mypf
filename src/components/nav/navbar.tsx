@@ -4,10 +4,11 @@ import dinamic from 'next/dynamic'
 
 // components
 import { ModeToggle } from '../buttons/theme-toggle-button'
-import { SelectMonthPage } from '../selectDate/picker'
+
 
 // ui components
 import { buttonVariants } from '../ui/button'
+import { SelectMonthPage } from '../selectDate/picker'
 
 const NavBar = () => {
     return (

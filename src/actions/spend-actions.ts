@@ -186,8 +186,8 @@ export async function createSpend(formData: FormData) {
         const monthIncome = await getIncomeData(year, month)
         const monthId = monthIncome?.id as number || 0;
 
-        const date = formData.get("date") as string || new Date().toISOString();
-
+        const createdAt = formData.get("createdAt") as string;
+        console.log("date", createdAt);
         await prisma.spend.create({
             data: {
                 monthId,
@@ -195,7 +195,7 @@ export async function createSpend(formData: FormData) {
                 amount,
                 type,
                 description,
-                createdAt: new Date(date),
+                createdAt,//new Date(date),
             },
         });
 
@@ -219,7 +219,7 @@ export async function updateSpend(formData: FormData) {
 
         const year = formData.get("year") as string;
         const month = formData.get("month") as string;
-        const date = formData.get("date") as string || new Date().toISOString();
+        const createdAt = formData.get("createdAt") as string;
 
         await prisma.spend.update({
             where: {
@@ -230,14 +230,14 @@ export async function updateSpend(formData: FormData) {
                 amount,
                 type,
                 description,
-                createdAt: new Date(date),
+                createdAt,
             },
         });
 
         revalidatePath(`/year/${year}/${month}`);
 
     } catch (error) {
-        console.error("Error updating spend:", error);
+        console.error("Error updating spend:");
     } finally {
         await prisma.$disconnect();
     }

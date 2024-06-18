@@ -7,11 +7,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { capitalize } from '../utils/text';
-import { getAllIncomes } from '@/actions/income-actions';
-import { getAllSpends } from '@/actions/spend-actions';
-import TotalCard from '@/components/cards/total';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 
 // parseFloat(total.toFixed(2))
 

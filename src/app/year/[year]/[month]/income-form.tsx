@@ -6,8 +6,6 @@ import {
     Card,
     CardContent,
     CardFooter,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -18,7 +16,6 @@ import { getIncomeData, updateIncome } from "@/actions/income-actions"
 
 //Styles
 import "./styles.css"
-import { Year } from '@prisma/client';
 
 
 export async function IncomeForm({ year, month, totalSpends }: { year: string, month: string, totalSpends: number }) {
@@ -34,12 +31,12 @@ export async function IncomeForm({ year, month, totalSpends }: { year: string, m
                 <input type="hidden" name="id" value={monthIncome?.id} />
                 <input type="hidden" name="currentYear" value={year} />
                 <input type="hidden" name="currentMonth" value={month} />
-                <Card className="w-full">
+                <Card className="w-full mt-3 p-3 ">
                     <CardContent>
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
+                        <div className="grid w-full items-center gap-4 ">
+                            <div className="flex flex-col space-y-1.5 gap-3">
                                 <Label htmlFor="name">Income</Label>
-                                <Input name="brutIncome" id="brutIncome" placeholder="Brut Income" defaultValue={monthIncome?.brutIncome || 0} />
+                                <Input name="brutIncome" id="brutIncome" className="text-end" placeholder="Brut Income" defaultValue={monthIncome?.brutIncome || 0} />
                             </div>
                         </div>
                     </CardContent>

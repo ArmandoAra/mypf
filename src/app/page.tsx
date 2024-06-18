@@ -17,7 +17,7 @@ async function Home() {
   return (
 
     <section className="" >
-      <div className="mt-24">
+      <div className="mt-40">
         <h1 className="text-7xl font-bold my-10 ml-11">
           My Personal Finance
         </h1>

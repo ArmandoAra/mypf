@@ -1,7 +1,6 @@
 
 import { createIncome } from '@/actions/income-actions';
 import { IncomeForm } from './income-form';
-import SpendForm from './spend-form';
 import { getSpends } from '@/actions/spend-actions';
 
 //styles
@@ -43,8 +42,8 @@ export default async function Month({ params }: { params: { month: string, year:
 
     return (
         <section className="flex flex-col gap-4 mt-20 w-full items-center">
-            <h1 className='text-7xl font-medium my-5'>{capitalize(params.month)} {params.year}</h1>
-            <div className='flex flex-col xl:flex-row gap-x-6 w-11/12 justify-center'>
+            <h1 className='text-7xl font-medium my-5 text-center'>{capitalize(params.month)} {params.year}</h1>
+            <div className='flex flex-col xl:flex-row gap-x-6 w-11/12 justify-center mb-10'>
                 <IncomeForm year={params.year} month={params.month} totalSpends={totalSpends} />
                 <SpendCard spends={spends as Spends[]} year={year} month={month} />
             </div>
