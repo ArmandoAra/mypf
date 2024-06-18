@@ -20,7 +20,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react"
 
 const actualDate = new Date()
 const actualYear = actualDate.getFullYear()
@@ -28,43 +27,42 @@ const actualNumberMonth = actualDate.getMonth()
 
 switch (actualNumberMonth) {
   case 0:
-    var actualMonth = "januar"
+    var actualMonth = "January"
     break
   case 1:
-    var actualMonth = "februar"
+    var actualMonth = "February"
     break
   case 2:
-    var actualMonth = "march"
+    var actualMonth = "March"
     break
   case 3:
-    var actualMonth = "april"
+    var actualMonth = "April"
     break
   case 4:
-    var actualMonth = "may"
+    var actualMonth = "May"
     break
   case 5:
-    var actualMonth = "june"
+    var actualMonth = "June"
     break
   case 6:
-    var actualMonth = "july"
+    var actualMonth = "July"
     break
   case 7:
-    var actualMonth = "august"
+    var actualMonth = "August"
     break
   case 8:
-    var actualMonth = "september"
+    var actualMonth = "September"
     break
   case 9:
-    var actualMonth = "october"
+    var actualMonth = "October"
     break
   case 10:
-    var actualMonth = "november"
+    var actualMonth = "November"
     break
   case 11:
-    var actualMonth = "december"
+    var actualMonth = "December"
     break
 }
-
 
 const FormSchema = z.object({
   month: z
@@ -74,7 +72,6 @@ const FormSchema = z.object({
 })
 
 export function SelectMonthPage() {
-  const [toUrl, setToUrl] = useState<string>("")
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -108,18 +105,18 @@ export function SelectMonthPage() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="januar">Januar</SelectItem>
-                  <SelectItem value="februar">Februar</SelectItem>
-                  <SelectItem value="march">March</SelectItem>
-                  <SelectItem value="april">April</SelectItem>
-                  <SelectItem value="may">May</SelectItem>
-                  <SelectItem value="june">June</SelectItem>
-                  <SelectItem value="july">July</SelectItem>
-                  <SelectItem value="august">August</SelectItem>
-                  <SelectItem value="september">September</SelectItem>
-                  <SelectItem value="october">October</SelectItem>
-                  <SelectItem value="november">November</SelectItem>
-                  <SelectItem value="december">December</SelectItem>
+                  <SelectItem value="January">January</SelectItem>
+                  <SelectItem value="Februar">Februar</SelectItem>
+                  <SelectItem value="March">March</SelectItem>
+                  <SelectItem value="April">April</SelectItem>
+                  <SelectItem value="May">May</SelectItem>
+                  <SelectItem value="June">June</SelectItem>
+                  <SelectItem value="July">July</SelectItem>
+                  <SelectItem value="August">August</SelectItem>
+                  <SelectItem value="September">September</SelectItem>
+                  <SelectItem value="October">October</SelectItem>
+                  <SelectItem value="November">November</SelectItem>
+                  <SelectItem value="December">December</SelectItem>
                 </SelectContent>
               </Select>
             </FormItem>

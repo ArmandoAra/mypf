@@ -2,16 +2,13 @@
 import { createIncome } from '@/actions/income-actions';
 import { IncomeForm } from './income-form';
 import SpendForm from './spend-form';
-import { createSpend, getSpends } from '@/actions/spend-actions';
+import { getSpends } from '@/actions/spend-actions';
 
 //styles
 import "./styles.css";
 
 // utils
-import { sum } from '@/components/utils/calculate';
 import SpendCard from './spend';
-import { Button } from '@/components/ui/button';
-import SpendContainer from '@/app/container/spendsContainer';
 import { capitalize } from '@/components/utils/text';
 
 interface Spends {
@@ -45,12 +42,11 @@ export default async function Month({ params }: { params: { month: string, year:
     const totalSpends = await calcAllSpends(spends as Spends[])
 
     return (
-        <section className="flex flex-col gap-4 mt-1 w-full items-center">
-            <h1 className='text-7xl font-medium '>{capitalize(params.month)} {params.year}</h1>
-            <div className='monthContainer mt-5'>
+        <section className="flex flex-col gap-4 mt-20 w-full items-center">
+            <h1 className='text-7xl font-medium my-5'>{capitalize(params.month)} {params.year}</h1>
+            <div className='flex flex-col xl:flex-row gap-x-6 w-11/12 justify-center'>
                 <IncomeForm year={params.year} month={params.month} totalSpends={totalSpends} />
                 <SpendCard spends={spends as Spends[]} year={year} month={month} />
-                <SpendForm year={year} month={month} />
             </div>
 
         </section>

@@ -1,9 +1,10 @@
 "use server"
 import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import navigate from "next/navigation";
-import spend from '@prisma/client';
+import { getIncomeData } from "./income-actions";
+
+
+
 
 export async function getSpend({ year, month, id }: { year: string, month: string, id: string }) {
     try {
@@ -14,7 +15,7 @@ export async function getSpend({ year, month, id }: { year: string, month: strin
         });
 
         if (!existYear) {
-            console.log("No year found");
+
             return null;
         }
 
@@ -26,7 +27,7 @@ export async function getSpend({ year, month, id }: { year: string, month: strin
         });
 
         if (!existMonth) {
-            console.log("No month found");
+
             return null;
         }
 
@@ -69,7 +70,6 @@ export async function getSpends({ year, month }: { year: string, month: string }
         });
 
         if (!existMonth) {
-            console.log("No month found");
             return [];
         }
 
@@ -89,6 +89,28 @@ export async function getSpends({ year, month }: { year: string, month: string }
         await prisma.$disconnect();
     }
 }
+
+
+export async function getMonthSpends(year: string) {
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    var spendsSorted: number[] = [];
+    // en el orde de los meses, si no existe el mes se pone un 0 y si existe se suma todos los gastos del mes y lo agrega al array
+    for (let i = 0; i < labels.length; i++) {
+        const month = labels[i];
+        const spends = await getSpends({ year, month });
+        if (spends) {
+            const total = spends.reduce((acc, spend) => {
+                acc += spend.amount || 0;
+                return acc;
+            }, 0);
+            spendsSorted.push(total);
+        } else {
+            spendsSorted.push(0);
+        }
+    }
+    return spendsSorted;
+}
+
 
 export async function getAllSpends({ year, months }: { year: string, months: string[] }) {
     // Buscar y sumar todos los gastos de un año
@@ -118,7 +140,7 @@ export async function getAllSpends({ year, months }: { year: string, months: str
         return allSpends.reduce((acc, spend) => {
             acc += spend.amount || 0;
             return acc;
-        }, 0);
+        }, 0).toFixed(2);
 
 
     } catch (error) {
@@ -149,10 +171,11 @@ export async function getSpendTypes() {
         await prisma.$disconnect();
     }
 }
-export async function createSpend(formData: FormData) {
-    try {
-        const monthId = Number(formData.get("monthId"));
 
+
+export async function createSpend(formData: FormData) {
+
+    try {
         const service = formData.get("service") as string;
         const amount = Number(formData.get("amount"));
         const type = formData.get("type") as string;
@@ -160,6 +183,8 @@ export async function createSpend(formData: FormData) {
 
         const year = formData.get("year") as string;
         const month = formData.get("month") as string;
+        const monthIncome = await getIncomeData(year, month)
+        const monthId = monthIncome?.id as number || 0;
 
         const date = formData.get("date") as string || new Date().toISOString();
 
@@ -195,6 +220,7 @@ export async function updateSpend(formData: FormData) {
         const year = formData.get("year") as string;
         const month = formData.get("month") as string;
         const date = formData.get("date") as string || new Date().toISOString();
+
         await prisma.spend.update({
             where: {
                 id,
@@ -208,7 +234,7 @@ export async function updateSpend(formData: FormData) {
             },
         });
 
-        window.location.href = `/year/${year}/${month}`;
+        revalidatePath(`/year/${year}/${month}`);
 
     } catch (error) {
         console.error("Error updating spend:", error);

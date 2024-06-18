@@ -28,13 +28,13 @@ export async function IncomeForm({ year, month, totalSpends }: { year: string, m
     const show = "block"
 
     return (
-        <div className="column">
+        <div className="flex flex-col w-4/5 sm:w-2/4 m-auto xl:m-0 xl:w-2/5 2xl:w-1/3">
             <TotalCard brutIncome={monthIncome?.brutIncome || 0} totalSpends={totalSpends} year={year} month={month} />
-            <form id="form" className={show} action={updateIncome}>
+            <form id="form" className="flex flex-roww-2/12" action={updateIncome}>
                 <input type="hidden" name="id" value={monthIncome?.id} />
                 <input type="hidden" name="currentYear" value={year} />
                 <input type="hidden" name="currentMonth" value={month} />
-                <Card className="w-[350px]">
+                <Card className="w-full">
                     <CardContent>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">

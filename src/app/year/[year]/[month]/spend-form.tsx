@@ -12,8 +12,9 @@ export default async function SpendForm({ year, month }: { year: string, month: 
 
 
     return (
+
         <form id="form" className="column" action={createSpend}>
-            <div className='flex flex-col gap-2 mb-4'>
+            <div className='flex flex-col gap-2 mb-4 p-4'>
                 <label htmlFor="service" className='flex flex-row justify-between gap-1 my-1'>Service <input className='text-right pr-2' type="text" name="service" /></label>
                 <label htmlFor="amount" className='flex flex-row justify-between gap-1 my-1'>Amount <input className='text-right pr-2 appearance-none' type="number" step="0.01" min="0" placeholder="0.00" required name="amount" /></label>
                 <label htmlFor="type" className='flex flex-row justify-between gap-1 my-1'>Type <input className='text-right pr-2' type="text" name="type" /></label>

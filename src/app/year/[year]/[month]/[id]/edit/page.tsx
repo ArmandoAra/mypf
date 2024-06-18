@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import navigate from 'next/navigation';
 import Link from "next/link";
 
 
@@ -17,6 +16,7 @@ async function SpendEdit({ params }: { params: { month: string, year: string, id
 
     const spend = await getSpend({ year: year, month: month, id: id });
     const spendTypes = await getSpendTypes();
+
 
     return (
         <form action={updateSpend} className="mt-28 w-4/5 md:w-2/6 ">

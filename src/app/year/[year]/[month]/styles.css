@@ -1,8 +1,7 @@
 .monthContainer {
   display: grid;
-  grid-template-columns: 1fr 60% 1fr;
-  gap: 16px; /* Ajusta el espacio entre columnas según sea necesario */
-  width: 65vw;
+  grid-template-columns: 1fr 70% 1fr;
+  width: 55vw;
   justify-content: center;
 }
 
@@ -11,10 +10,14 @@
   border: 1px solid #ccc; /* Añade un borde para distinguir las columnas */
 }
 
+.spendTableCell {
+  height: 50vh;
+}
+
 @media screen and (max-width: 1500px) {
   .monthContainer {
     gap: 3px;
-    width: 76vw;
+    width: 47vw;
   }
   .column {
     padding: 3px; /* Ajusta el padding según sea necesario */

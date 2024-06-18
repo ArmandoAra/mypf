@@ -108,3 +108,35 @@ export async function getAllIncomes(year: string) {
 
     return allIncomes;
 }
+
+export async function getListMonthIncomes(year: string) {
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    var incomesSorted: number[] = [];
+    const existIncome = await prisma.year.findFirst({
+        where: {
+            year: Number(year),
+        },
+    });
+
+    if (!existIncome) {
+        return 0;
+    }
+
+    const allIncomes = await prisma.month.findMany({
+        where: {
+            yearId: existIncome.id
+        }
+    });
+    // en el orden de los meses, si no existe el mes se pone un 0 y si existe se pone el valor del mes
+    labels.forEach((label) => {
+        const existMonth = allIncomes.find((income) => income.month === label);
+
+        if (existMonth) {
+            incomesSorted.push(existMonth.brutIncome);
+        } else {
+            incomesSorted.push(0);
+        }
+    });
+
+    return incomesSorted;
+}
