@@ -6,6 +6,7 @@ import Calculator from '@/components/calculator/Calculator';
 
 // Styles
 import './styles.css';
+import { capitalize } from '@/components/utils/text';
 
 interface Spend {
     id: number;
@@ -144,7 +145,7 @@ export default function SpendForm({ spends }: SpendFormProps) {
                             required
                             name="amount"
                             onChange={handleChanges}
-                            value={data.spend.amount}
+                            value={data.spend.amount ? data.spend.amount : ''}
                         />
                     </div>
                 </label>
@@ -155,7 +156,7 @@ export default function SpendForm({ spends }: SpendFormProps) {
                         type="text"
                         name="type"
                         onChange={handleChanges}
-                        value={data.spend.type}
+                        value={capitalize(data.spend.type)}
                     />
                 </label>
                 <label htmlFor="description" className="flex flex-row justify-between gap-3">

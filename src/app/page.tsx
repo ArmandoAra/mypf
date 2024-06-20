@@ -8,8 +8,7 @@ import { getListMonthIncomes } from "@/actions/income-actions";
 import { getMonthSpends } from "@/actions/spend-actions";
 async function Home() {
 
-
-  const selectedYear = 2024;
+  const selectedYear = new Date().getFullYear();
   const data = await calcTotalYear(selectedYear);
   const monthsIncomes = await getListMonthIncomes(selectedYear.toString()) || [];
   const monthsSpends = await getMonthSpends(selectedYear.toString());
@@ -19,7 +18,7 @@ async function Home() {
     <section className="" >
       <div className="mt-40">
         <h1 className="text-7xl font-bold my-10 ml-11">
-          My Personal Finance
+          My Personal Finance {selectedYear}
         </h1>
       </div>
       <div className="flex flex-col lg:flex-row gap-8 ">

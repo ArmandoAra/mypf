@@ -30,7 +30,7 @@ export default async function HomeTotalCard({
 
         < Card >
             <CardHeader>
-                <CardTitle>Total of the {year}</CardTitle>
+                <CardTitle className='text-2xl'>Total of the {year}</CardTitle>
             </CardHeader>
             <CardContent>
                 <Table>

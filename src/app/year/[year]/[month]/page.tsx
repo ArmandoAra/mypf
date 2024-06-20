@@ -41,7 +41,7 @@ export default async function Month({ params }: { params: { month: string, year:
     const totalSpends = await calcAllSpends(spends as Spends[])
 
     return (
-        <section className="flex flex-col gap-4 mt-20 w-full items-center">
+        <section className="flex flex-col gap-4 mt-36 w-full items-center">
             <h1 className='text-7xl font-medium my-5 text-center'>{capitalize(params.month)} {params.year}</h1>
             <div className='flex flex-col xl:flex-row gap-x-6 w-11/12 justify-center mb-10'>
                 <IncomeForm year={params.year} month={params.month} totalSpends={totalSpends} />

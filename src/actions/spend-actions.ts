@@ -3,9 +3,6 @@ import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache";
 import { getIncomeData } from "./income-actions";
 
-
-
-
 export async function getSpend({ year, month, id }: { year: string, month: string, id: string }) {
     try {
         const existYear = await prisma.year.findFirst({
@@ -216,10 +213,10 @@ export async function updateSpend(formData: FormData) {
         const amount = Number(formData.get("amount"));
         const type = formData.get("type") as string;
         const description = formData.get("description") as string;
-
         const year = formData.get("year") as string;
         const month = formData.get("month") as string;
         const createdAt = formData.get("createdAt") as string;
+
 
         await prisma.spend.update({
             where: {
@@ -237,7 +234,13 @@ export async function updateSpend(formData: FormData) {
         revalidatePath(`/year/${year}/${month}`);
 
     } catch (error) {
-        console.error("Error updating spend:");
+        try {
+            await createSpend(formData);
+        }
+        catch (error) {
+            console.error("Error updating spend:", error);
+        }
+
     } finally {
         await prisma.$disconnect();
     }

@@ -36,7 +36,13 @@ export async function IncomeForm({ year, month, totalSpends }: { year: string, m
                         <div className="grid w-full items-center gap-4 ">
                             <div className="flex flex-col space-y-1.5 gap-3">
                                 <Label htmlFor="name">Income</Label>
-                                <Input name="brutIncome" id="brutIncome" className="text-end" placeholder="Brut Income" defaultValue={monthIncome?.brutIncome || 0} />
+                                <Input name="brutIncome" id="brutIncome" className="text-right pr-2 appearance-none"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                    required
+                                    defaultValue={monthIncome?.brutIncome || 0} />
                             </div>
                         </div>
                     </CardContent>
