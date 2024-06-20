@@ -47,7 +47,7 @@ export default async function HomeTotalCard({
                         </TableRow>
                         <TableRow className='bg-green-800'>
                             <TableCell className="font-medium">Neto</TableCell>
-                            <TableCell className="text-right">{totalNetIncome} €</TableCell>
+                            <TableCell className="text-right">{totalNetIncome.toFixed(2)} €</TableCell>
                         </TableRow>
                         <TableRow className='bg-red-800' >
                             <TableCell className="font-medium">Spend</TableCell>

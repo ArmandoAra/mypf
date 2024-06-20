@@ -23,7 +23,7 @@ const NavBar = () => {
 
     const handleClick = () => {
         // Construir la URL absoluta
-        const absoluteUrl = `${protocol}//${host}/year/${year}`;
+        const absoluteUrl = `./year/${year}`;
 
         // Redireccionar a la URL absoluta
         document.location.href = absoluteUrl;
